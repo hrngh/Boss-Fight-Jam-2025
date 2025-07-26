@@ -49,11 +49,25 @@ MonoBehaviour:
   bounds: {x: 0, y: 0}
   burst: 1
   frequency: 1
+  lifespan: 0
+  canExpire: 0
   angle:
   - 0
   - 0
+  evenDist: 0
   speed:
   - 8
   - 8
+  curve: 0
   delay: 0
   size: 0
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  aiming: 0
+  chasePlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 0

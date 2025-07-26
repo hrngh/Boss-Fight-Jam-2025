@@ -7,19 +7,32 @@ public class AreaSpawn : AttackEvent
     public float[] angle;
     public bool evenDist;
     public float[] speed;
+    public float curve;
     public float delay;
     public float size = 1;
     public bool isEvent;
+    public bool relativeSpace;
+    public bool fromMouth;
+    public bool fromEyeL;
+    public bool fromEyeR;
+    public bool aiming;
+    public bool chasePlayer;
+    public bool detachPlayer;
+    public Vector2 waveDat;
+    public float spawnLifespan;
+    public bool piercing;
 
     private float timer;
 
     public override void Start(){
         base.Start();
         timer = delay;
+        if (waveDat == null) waveDat = Vector2.zero; 
     }
 
     public override void SpawnAttacks()
     {
+
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
@@ -28,23 +41,48 @@ public class AreaSpawn : AttackEvent
             {
                 float spawnX = position.x + Random.Range(-bounds[0] / 2, bounds[0] / 2);
                 float spawnY = position.y + Random.Range(-bounds[1] / 2, bounds[1] / 2);
-                float spawnAngle = evenDist ? angle[0] + i * (angle[1] - angle[0]) / (burst - 1) : Random.Range(angle[0], angle[1]);
+                Vector3 spawnPos = relativeSpace ? transform.position + new Vector3(spawnX, spawnY) : GetBoxSpace(spawnX, spawnY);
+                if (fromMouth) spawnPos = GameManager.Instance.mouthTransform.position;
+                if (fromEyeL) spawnPos = GameManager.Instance.eyeLTransform.position;
+                if (fromEyeR) spawnPos = GameManager.Instance.eyeRTransform.position;
+                float spawnAngle = (evenDist ? angle[0] + i * (angle[1] - angle[0]) / (burst - 1) : Random.Range(angle[0], angle[1])) + (relativeSpace ? transform.eulerAngles.z : 0);
+                if (aiming) {
+                    Vector3 aim = Player.Instance.transform.position - spawnPos;
+                    spawnAngle = Vector2.Angle(Vector2.right, aim) * (aim.y < 0 ? -1 : 1);
+                }
                 if (!isEvent) {
-                    DoAttack(spawnX, spawnY, spawnAngle);
+                    DoAttack(spawnPos, spawnAngle);
                 } else
                 {
-                    Instantiate(attackPrefab, GetBoxSpace(spawnX, spawnY), Quaternion.Euler(0, 0, spawnAngle));
+                    if (!chasePlayer)
+                    {
+                        Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, spawnAngle));
+                    } else
+                    {
+                        GameObject summon = Instantiate(attackPrefab, Player.Instance.transform);
+                        float radSpawnAngle = spawnAngle / 180 * Mathf.PI;
+                        spawnX = Mathf.Cos(radSpawnAngle) * position.x;
+                        spawnY = Mathf.Sin(radSpawnAngle) * position.x;
+                        summon.transform.localPosition = new Vector3(spawnX, spawnY);
+                        if (detachPlayer) summon.transform.parent = null;
+                        summon.transform.Rotate(Vector3.forward, spawnAngle+180);
+                    }
                 }
             }
         }
     }
 
-    private void DoAttack(float spawnX, float spawnY, float spawnAngle)
+    private void DoAttack(Vector2 spawnPos, float spawnAngle)
     {
-        Attack attack = Instantiate(attackPrefab, GetBoxSpace(spawnX, spawnY), Quaternion.Euler(0, 0, spawnAngle)).GetComponent<Attack>();
+        Attack attack = Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, spawnAngle)).GetComponent<Attack>();
         attack.transform.localScale = new Vector3(size, size, size);
         float spawnSpeed = Random.Range(speed[0], speed[1]);
         spawnSpeed = Mathf.Round(spawnSpeed * 4) / 4;
         attack.speed = spawnSpeed;
+        attack.curve = curve;
+        attack.waveAmp = waveDat.x;
+        attack.waveFreq = waveDat.y;
+        attack.lifespan = spawnLifespan;
+        attack.piercing = piercing;
     }
 }

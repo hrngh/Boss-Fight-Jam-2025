@@ -6,6 +6,12 @@ public class Attack : MonoBehaviour
 {
     public float speed;
     public float curve;
+    public float waveAmp;
+    public float waveFreq;
+    public bool piercing;
+    public float lifespan;
+
+    private float timer;
 
     void Start()
     {
@@ -14,7 +20,13 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
+        if (lifespan > 0) {
+            lifespan -= Time.deltaTime;
+            if (lifespan <= 0) Destroy(gameObject);
+        }
         transform.Translate(Vector2.right * Time.deltaTime * speed);
+        transform.Translate(Vector2.up * Time.deltaTime * waveAmp * Mathf.Cos(timer * waveFreq));
         transform.Rotate(Vector3.forward, curve * Time.deltaTime);
     }
 
@@ -23,11 +35,9 @@ public class Attack : MonoBehaviour
         GameManager.Instance.attacks.Remove(this);
     }
 
+    private bool hitTop;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Wall"){
-            Destroy(gameObject);
-        }
         if (collision.tag == "Player")
         {
             if (GameManager.Instance.inPhase)
@@ -37,7 +47,19 @@ public class Attack : MonoBehaviour
             {
                 Player.Instance.Hurt();
             }
+            if(!piercing) Destroy(gameObject);
+        }
+        if (piercing) return;
+        if (collision.tag == "Wall")
+        {
             Destroy(gameObject);
+        } else if(collision.tag == "TopWall")
+        {
+            if(transform.position.y < collision.transform.position.y && !hitTop)
+            {
+                Destroy(gameObject);
+            }
+            hitTop = true;
         }
     }
 }

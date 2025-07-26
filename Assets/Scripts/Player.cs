@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
     public float attackTime;
     public float rotateSpeed;
     public float attackRotateRatio;
-    public int startHealth;
+    public int maxHealth;
 
     public Rigidbody2D rb;
     public GameObject capture;
     public GameObject circlerContainer;
     public GameObject[] circlers;
+    public GameObject attackPrefab;
+    public GameObject healthbar;
 
     private int health;
     private int captureCount;
@@ -27,12 +29,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        health = maxHealth;
         Instance = this;
     }
 
     void Update()
     {
         DoInputs();
+        iFrameTimer -= Time.deltaTime;
         captureDelay -= Time.deltaTime;
         float rotateRatio = 1 + attackTimer / attackTime * attackRotateRatio;
         circlerContainer.transform.Rotate(Vector3.forward, rotateSpeed * Time.deltaTime * rotateRatio);
@@ -73,13 +77,12 @@ public class Player : MonoBehaviour
                 {
                     circlers[circlerCount].SetActive(true);
                     circlerCount++;
+                    GameManager.Instance.ChangeAttack();
                 } else
                 {
-                    //TODO attack
-                    //Temp
-                    foreach (BossPartMover part in BossPartMover.allMovers)
+                    for (int i=0; i<7; i++)
                     {
-                        part.Chaos();
+                        Instantiate(attackPrefab, transform.position, Quaternion.identity);
                     }
                     foreach (GameObject circler in circlers)
                     {
@@ -104,9 +107,18 @@ public class Player : MonoBehaviour
         float c = captureCount / 7f;
         capture.transform.localScale = new Vector3(c,c,c);
     }
+    private float iFrameTimer;
     public void Hurt()
     {
+        if (iFrameTimer > 0) return;
+        iFrameTimer = .5f;
         health--;
-        //TODo healthbar
+        healthbar.transform.localScale = new Vector3(8 * health/maxHealth, healthbar.transform.localScale.y, 1);
+        //TODo die
+    }
+    public void Heal(int quantity)
+    {
+        health = Mathf.Clamp(health + quantity, 0, maxHealth);
+        healthbar.transform.localScale = new Vector3(8 * health / maxHealth, healthbar.transform.localScale.y, 1);
     }
 }
