@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
         m_Volume.profile.TryGetSettings<Bloom>(out m_Bloom);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (testing)
@@ -74,6 +73,11 @@ public class GameManager : MonoBehaviour
             {
                 testing = false;
                 StartPhaseChange(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                testing = false;
+                StartPhaseChange(3);
             }
             timer -= Time.deltaTime;
             if (timer <= 0)

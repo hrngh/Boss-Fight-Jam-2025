@@ -10,6 +10,7 @@ public class Attack : MonoBehaviour
     public float waveFreq;
     public bool piercing;
     public float lifespan;
+    public bool chaser;
 
     private float timer;
 
@@ -24,6 +25,11 @@ public class Attack : MonoBehaviour
         if (lifespan > 0) {
             lifespan -= Time.deltaTime;
             if (lifespan <= 0) Destroy(gameObject);
+        }
+        if (chaser)
+        {
+            Vector3 aim = Player.Instance.transform.position - transform.position;
+            transform.eulerAngles = new Vector3(0, 0, Vector2.Angle(Vector2.right, aim) * (aim.y < 0 ? -1 : 1));
         }
         transform.Translate(Vector2.right * Time.deltaTime * speed);
         transform.Translate(Vector2.up * Time.deltaTime * waveAmp * Mathf.Cos(timer * waveFreq));
@@ -43,11 +49,12 @@ public class Attack : MonoBehaviour
             if (GameManager.Instance.inPhase)
             {
                 Player.Instance.AddCapture();
+                Destroy(gameObject);
             } else
             {
                 Player.Instance.Hurt();
+                if(!piercing) Destroy(gameObject);
             }
-            if(!piercing) Destroy(gameObject);
         }
         if (piercing) return;
         if (collision.tag == "Wall")

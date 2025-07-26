@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3345856976208642210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3345856976208650077}
+  - component: {fileID: 3345856976208650076}
+  - component: {fileID: 3345856976208650050}
+  m_Layer: 0
+  m_Name: A3-6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3345856976208650077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345856976208642210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3345856976208650076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345856976208642210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 8284545991983942428, guid: 03aecf0a5edc3674e991cfce90918120, type: 3}
+  position: {x: 4, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 1
+  frequency: 1
+  lifespan: 0
+  canExpire: 0
+  angle:
+  - 0
+  - 180
+  evenDist: 0
+  speed:
+  - 0
+  - 0
+  curve: 0
+  delay: 1
+  size: 0.6
+  isEvent: 1
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  aiming: 0
+  chasePlayer: 1
+  detachPlayer: 1
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 0
+--- !u!114 &3345856976208650050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345856976208642210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 8
+  frequency: 3
+  lifespan: 0
+  canExpire: 0
+  angle:
+  - -180
+  - -50
+  evenDist: 1
+  speed:
+  - 1.5
+  - 1.5
+  curve: 20
+  delay: 1
+  size: 0.6
+  isEvent: 0
+  relativeSpace: 1
+  fromMouth: 1
+  fromEyeL: 0
+  fromEyeR: 0
+  aiming: 0
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 0

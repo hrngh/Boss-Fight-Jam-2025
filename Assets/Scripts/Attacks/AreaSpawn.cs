@@ -21,6 +21,7 @@ public class AreaSpawn : AttackEvent
     public Vector2 waveDat;
     public float spawnLifespan;
     public bool piercing;
+    public bool chaser;
 
     private float timer;
 
@@ -84,5 +85,6 @@ public class AreaSpawn : AttackEvent
         attack.waveFreq = waveDat.y;
         attack.lifespan = spawnLifespan;
         attack.piercing = piercing;
+        attack.chaser = chaser;
     }
 }

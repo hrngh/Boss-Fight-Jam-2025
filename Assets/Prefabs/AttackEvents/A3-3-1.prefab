@@ -49,7 +49,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   bounds: {x: 0, y: 0}
   burst: 1
-  frequency: 0.8
+  frequency: 0.08
   lifespan: 1
   canExpire: 1
   angle:

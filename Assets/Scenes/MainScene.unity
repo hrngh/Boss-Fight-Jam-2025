@@ -2502,7 +2502,14 @@ MonoBehaviour:
   - {fileID: 4738921368254336674, guid: dc1fe62b83929f44d879d29c25fa457a, type: 3}
   - {fileID: 2810804847836176072, guid: ecb4ccdb317ece74e9e26bbdc4c117eb, type: 3}
   - {fileID: 2817542198999501713, guid: 8b03bb7e23dfc17489ab8039d600ec33, type: 3}
-  phase3Attacks: []
+  phase3Attacks:
+  - {fileID: 359086709808017946, guid: 33581f9a73e95884bab9d5b29a9003eb, type: 3}
+  - {fileID: 940777463654880735, guid: e59df34152afca343be5123ba31b11b3, type: 3}
+  - {fileID: 8293076836906640969, guid: 6eb124eb9e511d246b743ea7943345ac, type: 3}
+  - {fileID: 130473797400273202, guid: a664f3f769b895247ab75848204b6698, type: 3}
+  - {fileID: 8453275203587842522, guid: a293a06c5a7ff9144a1d1897c744f444, type: 3}
+  - {fileID: 3345856976208642210, guid: 3bba494a93bc15140839279fb9743fb0, type: 3}
+  - {fileID: 3427795284491483043, guid: 7077b584660553345a0ab23287e1b295, type: 3}
   testing: 1
 --- !u!82 &1363739784
 AudioSource:
@@ -3772,75 +3779,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &3279538260646061260
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3279538260646066995}
-  - component: {fileID: 3279538260646066994}
-  m_Layer: 0
-  m_Name: A3-3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &3279538260646066994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279538260646061260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 8284545991983942428, guid: 03aecf0a5edc3674e991cfce90918120, type: 3}
-  position: {x: 4, y: 0}
-  bounds: {x: 0, y: 0}
-  burst: 1
-  frequency: 0.8
-  lifespan: 0
-  canExpire: 0
-  angle:
-  - 0
-  - 180
-  evenDist: 0
-  speed:
-  - 0
-  - 0
-  curve: 0
-  delay: 1
-  size: 0.6
-  isEvent: 1
-  relativeSpace: 0
-  fromMouth: 0
-  fromEyeL: 0
-  fromEyeR: 0
-  aiming: 0
-  chasePlayer: 1
-  detachPlayer: 1
-  waveDat: {x: 0, y: 0}
-  spawnLifespan: 0
-  piercing: 0
---- !u!4 &3279538260646066995
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279538260646061260}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
