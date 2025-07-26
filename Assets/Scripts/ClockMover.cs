@@ -9,7 +9,7 @@ public class ClockMover : MonoBehaviour
     private bool dead;
     void Start()
     {
-
+        if (GameManager.Instance) GameManager.Instance.clocks.Add(this);
     }
 
     void Update()
@@ -36,5 +36,10 @@ public class ClockMover : MonoBehaviour
     public void Kill()
     {
         dead = true;    
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.clocks.Remove(this);
     }
 }

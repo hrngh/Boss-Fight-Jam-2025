@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossPartMover : MonoBehaviour
 {
+    public static HashSet<BossPartMover> allMovers;
     public float maxAccel;
     public float maxRange;
     public float rotateAccel;
@@ -19,6 +20,8 @@ public class BossPartMover : MonoBehaviour
     void Start()
     {
         origPos = transform.localPosition;
+        if (allMovers == null) allMovers = new HashSet<BossPartMover>();
+        allMovers.Add(this);
     }
 
     void Update()
@@ -43,7 +46,7 @@ public class BossPartMover : MonoBehaviour
         if (rotateRange != 0)
         {
             //rotation
-            float currentRot = transform.eulerAngles.z;
+            float currentRot = transform.localEulerAngles.z % 360;
             if (currentRot < -180) currentRot += 360;
             if (currentRot > 180) currentRot -= 360;
             float rot_randomRat = Mathf.Clamp01(1 - Mathf.Abs(currentRot) / rotateRange);
@@ -52,5 +55,13 @@ public class BossPartMover : MonoBehaviour
             rotVel += rot_grav * Time.deltaTime * rotateAccel * (1 - rot_randomRat);
             transform.Rotate(0, 0, rotVel * Time.deltaTime);
         }
+    }
+
+    public void Chaos()
+    {
+        float chaosScale = 1.5f;
+        xVel *= chaosScale;
+        yVel *= chaosScale;
+        rotVel *= chaosScale;
     }
 }
