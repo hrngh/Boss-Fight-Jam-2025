@@ -41,8 +41,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        health = maxHealth;
+        if (Instance) Destroy(Instance);
         Instance = this;
+        health = maxHealth;
         if (!testing)
         {
             foreach (GameObject c in circlers)
@@ -198,6 +199,6 @@ public class Player : MonoBehaviour
     public void Heal(int quantity)
     {
         health = Mathf.Clamp(health + quantity, 0, maxHealth);
-        healthbar.transform.localScale = new Vector3(8 * health / maxHealth, healthbar.transform.localScale.y, 1);
+        healthbar.transform.localScale = new Vector3(8f * health / maxHealth, healthbar.transform.localScale.y, 1);
     }
 }

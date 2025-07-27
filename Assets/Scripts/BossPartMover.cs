@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossPartMover : MonoBehaviour
 {
-    public static HashSet<BossPartMover> allMovers;
     public float maxAccel;
     public float maxRange;
     public float rotateAccel;
@@ -21,8 +20,12 @@ public class BossPartMover : MonoBehaviour
     void Start()
     {
         origPos = transform.localPosition;
-        if (allMovers == null) allMovers = new HashSet<BossPartMover>();
-        allMovers.Add(this);
+        Invoke("addToList", 0.1f);
+    }
+
+    private void addToList()
+    {
+        GameManager.Instance.addMover(this);
     }
 
     void Update()

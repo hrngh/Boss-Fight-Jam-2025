@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public HashSet<ClockMover> clocks;
     public HashSet<AttackEvent> events;
     public HashSet<Attack> attacks;
+    public HashSet<BossPartMover> allMovers;
     private Bloom m_Bloom;
     private float finalCountdown = 23.67f;
     public float bloomStrength;
@@ -65,8 +66,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1;
+        if (Instance) Destroy(Instance);
         Instance = this;
+        Time.timeScale = 1;
         clocks = new HashSet<ClockMover>();
         events = new HashSet<AttackEvent>();
         attacks = new HashSet<Attack>();
@@ -91,10 +93,23 @@ public class GameManager : MonoBehaviour
         volume = 1;
     }
 
+    public void addMover(BossPartMover b)
+    {
+        if (allMovers == null) allMovers = new HashSet<BossPartMover>();
+        allMovers.Add(b);
+    }
+
     private void StartUp()
     {
         timer = 0;
         if(!testing) audioSource.Play();
+    }
+
+    private void getFucked()
+    {
+        Application.Quit();
+        Time.timeScale = 0;
+        Instantiate(screenFlashPrefab);
     }
 
     void Update()
@@ -128,21 +143,39 @@ public class GameManager : MonoBehaviour
         }
 
         //quitting
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape))
         {
             quitter.color = new Color(1, 1, 1, quitter.color.a + Time.unscaledDeltaTime / 2);
+            if (quitter.color.a >= 1)
+            {
+                ClearStuff();
+                happyBossContainer.SetActive(false);
+                mainBossContainer.SetActive(false);
+                quitter.color = new Color(1,1,1,-1);
+                if (Random.Range(0f,1f) <= .5f)
+                {
+                    audioSource.Stop();
+                    audioSource.pitch = 0.4f;
+                    audioSource.PlayOneShot(phaseChangeSound);
+                    audioSource.pitch = 0.5f;
+                    audioSource.PlayOneShot(phaseChangeSound);
+                    audioSource.pitch = 0.6f;
+                    audioSource.PlayOneShot(phaseChangeSound);
+                    happyBossContainer2.SetActive(true);
+                    Invoke("getFucked", .2f);
+                } else {
+                    Application.Quit();
+                }
+            }
         }
         else
         {
-            quitter.color = new Color(1, 1, 1, quitter.color.a - Time.unscaledDeltaTime * 2);
+            if(quitter.color.a > 0) quitter.color = new Color(1, 1, 1, quitter.color.a - Time.unscaledDeltaTime * 2);
         }
         if (state != State.dead && state != State.transition) eyeStrengthMult = (1 - quitter.color.a);
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            PlayerPrefs.SetInt("skipTutorial", 0);
-            PlayerPrefs.SetInt("hard", 0);
-        }
+        if (Input.GetKeyDown(KeyCode.T)) PlayerPrefs.SetInt("skipTutorial", 0);
+        if (Input.GetKeyDown(KeyCode.H)) PlayerPrefs.SetInt("hard", 0);
 
         if (testing)
         {
@@ -233,7 +266,6 @@ public class GameManager : MonoBehaviour
                     audioSource.Stop();
                     audioSource.clip = tracks[5];
                     audioSource.PlayDelayed(1.5f);
-                    PlayerPrefs.SetInt("hard", 1);
                 }
                 break;
             case State.phase5:
@@ -250,19 +282,30 @@ public class GameManager : MonoBehaviour
                 timer -= Time.deltaTime;
                 float shrinkAmount = Mathf.Clamp01((timer-4.5f)*2);
                 if (timer >= 4) {
-                    foreach (BossPartMover b in BossPartMover.allMovers)
+                    foreach (BossPartMover b in allMovers)
                     {
                         b.transform.localScale = Vector3.one * shrinkAmount;
                     }
                 }
-                if (timer <= .2f)
+                if (timer <= .2f && attackIndex == 0)
                 {
+                    attackIndex = 1;
                     audioSource.pitch = .4f;
-                    audioSource.PlayOneShot(phaseChangeSound, 0.4f);
+                    audioSource.PlayOneShot(phaseChangeSound);
+                    audioSource.pitch = .45f;
+                    audioSource.PlayOneShot(phaseChangeSound);
                     audioSource.pitch = .5f;
-                    audioSource.PlayOneShot(phaseChangeSound, 0.4f);
-                    if (PlayerPrefs.GetInt("hard", 0) == 0) happyBossContainer2.SetActive(true);
-                    if (PlayerPrefs.GetInt("hard", 0) == 1) happyBossContainer3.SetActive(true);
+                    audioSource.PlayOneShot(phaseChangeSound);
+                    audioSource.pitch = .6f;
+                    audioSource.PlayOneShot(phaseChangeSound);
+                    if (PlayerPrefs.GetInt("hard", 0) == 0)
+                    {
+                        happyBossContainer2.SetActive(true);
+                    } else
+                    {
+                        happyBossContainer3.SetActive(true);
+                    }
+                    PlayerPrefs.SetInt("hard", 1);
                 }
                 if (timer <= 0)
                 {
@@ -288,7 +331,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.transition:
                 timer -= Time.deltaTime;
-                eyeStrengthMult = Mathf.Clamp(eyeStrengthMult + Time.deltaTime * 2, -10, 1);
+                eyeStrengthMult = Mathf.Clamp(eyeStrengthMult + Time.deltaTime * 4, -10, 1);
                 inPhase = false;
                 if (timer <= 0)
                 {
@@ -326,6 +369,7 @@ public class GameManager : MonoBehaviour
 
     public void DoGameEnd()
     {
+        attackIndex = 0;
         state = State.end;
         audioSource.Stop();
         audioSource.PlayOneShot(phaseChangeSound);
@@ -349,7 +393,7 @@ public class GameManager : MonoBehaviour
     int hurtCounter;
     public void HurtBoss()
     {
-        foreach (BossPartMover b in BossPartMover.allMovers)
+        foreach (BossPartMover b in allMovers)
         {
             b.Chaos();
         }
@@ -369,7 +413,7 @@ public class GameManager : MonoBehaviour
     }
     private void OrderBoss()
     {
-        foreach (BossPartMover b in BossPartMover.allMovers)
+        foreach (BossPartMover b in allMovers)
         {
             b.Order();
         }
@@ -383,7 +427,7 @@ public class GameManager : MonoBehaviour
         ClearStuff();
         if (i == 1)
         {
-            eyeStrengthMult = -3f;
+            eyeStrengthMult = -6f;
             Instantiate(screenFlashPrefab);
             tutorialTexts[0].SetActive(false);
             tutorialTexts[1].SetActive(false);
@@ -395,7 +439,8 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("skipTutorial", 1);
         }
-        if(i != 4) Player.Instance.Heal(5);
+        if (i == 2) Player.Instance.Heal(3);
+        if (i == 3) Player.Instance.Heal(5);
         newPhase = i;
         state = State.transition;
         timer = newPhase == 2 ? 0 : 4 / 3f;

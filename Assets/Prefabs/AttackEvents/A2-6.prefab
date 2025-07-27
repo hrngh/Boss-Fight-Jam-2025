@@ -107,7 +107,7 @@ MonoBehaviour:
   position: {x: 0.5, y: 0.5}
   bounds: {x: 0, y: 0}
   burst: 1
-  frequency: 0.5
+  frequency: 0.25
   lifespan: 0
   canExpire: 0
   angle:
@@ -123,10 +123,17 @@ MonoBehaviour:
   isEvent: 0
   relativeSpace: 0
   fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
   aiming: 1
+  chasePlayer: 0
+  detachPlayer: 0
   waveDat: {x: 0, y: 0}
   spawnLifespan: 0
   piercing: 0
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
 --- !u!1 &8371585033000210567
 GameObject:
   m_ObjectHideFlags: 0

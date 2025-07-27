@@ -86,13 +86,13 @@ public class AreaSpawn : AttackEvent
                 }
             } else
             {
-                frequency = Mathf.Clamp(frequency * .9f, .073f, 1);
+                frequency = Mathf.Clamp(frequency * .9f, .07f, 1);
                 float radSpawnAngle = accelAngle / 180 * Mathf.PI;
                 float spawnX = Mathf.Cos(radSpawnAngle) * 6;
                 float spawnY = Mathf.Sin(radSpawnAngle) * 6;
                 Vector2 spawnPos = new Vector2(0, -1.85f) + new Vector2(spawnX, spawnY);
                 GameObject summon = Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, accelAngle + 180));
-                accelAngle += 22;
+                accelAngle += 25;
             }
         }
     }
