@@ -296,6 +296,8 @@ public class GameManager : MonoBehaviour
                     audioSource.PlayOneShot(phaseChangeSound);
                     audioSource.pitch = .5f;
                     audioSource.PlayOneShot(phaseChangeSound);
+                    audioSource.pitch = .55f;
+                    audioSource.PlayOneShot(phaseChangeSound);
                     audioSource.pitch = .6f;
                     audioSource.PlayOneShot(phaseChangeSound);
                     if (PlayerPrefs.GetInt("hard", 0) == 0)
@@ -418,7 +420,7 @@ public class GameManager : MonoBehaviour
             b.Order();
         }
     }
-
+    
     private int newPhase;
     void StartPhaseChange(int i)
     {

@@ -93,10 +93,10 @@ public class Player : MonoBehaviour
     {
         //inputs
         Vector2 vel = Vector2.zero;
-        if (Input.GetKey(KeyCode.LeftArrow)) vel += Vector2.left;
-        if (Input.GetKey(KeyCode.UpArrow)) vel += Vector2.up;
-        if (Input.GetKey(KeyCode.RightArrow)) vel += Vector2.right;
-        if (Input.GetKey(KeyCode.DownArrow)) vel += Vector2.down;
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) vel += Vector2.left;
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) vel += Vector2.up;
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) vel += Vector2.right;
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) vel += Vector2.down;
         rb.velocity = vel * speed;
         if (!doneWASD && vel.magnitude != 0)
         {
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         if(GameManager.Instance.state == GameManager.State.phase5)
         {
             capture.transform.localScale = Vector3.one * Mathf.Clamp01(capture.transform.localScale.x + Time.deltaTime);
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.K))
             {
                 Instantiate(attackPrefab, transform.position, Quaternion.identity);
                 sfxSource.PlayOneShot(shootSound);
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
         //attacking
         if(captureCount == 7)
         {
-            if (Input.GetKey(KeyCode.Z))
+            if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.K))
             {
                 rb.velocity *= attackSlowRatio;
                 attackTimer += Time.deltaTime;
