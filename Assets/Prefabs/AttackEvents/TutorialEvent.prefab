@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
-  position: {x: 0, y: 0.8}
+  position: {x: 0, y: 0.7}
   bounds: {x: 0, y: 0}
   burst: 1
-  frequency: 1
+  frequency: 0.75
   lifespan: 0
   canExpire: 0
   angle:
@@ -59,8 +59,8 @@ MonoBehaviour:
   - 8
   - 8
   curve: 0
-  delay: 0
-  size: 0
+  delay: 2
+  size: 0.8
   isEvent: 0
   relativeSpace: 0
   fromMouth: 0
@@ -68,6 +68,8 @@ MonoBehaviour:
   fromEyeR: 0
   aiming: 0
   chasePlayer: 0
+  detachPlayer: 0
   waveDat: {x: 0, y: 0}
   spawnLifespan: 0
   piercing: 0
+  chaser: 0

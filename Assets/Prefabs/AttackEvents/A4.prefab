@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3797970487159996673
+--- !u!1 &4156254867753991396
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6460120442650320889}
-  - component: {fileID: -5595621705384497668}
+  - component: {fileID: 4156254867753984795}
+  - component: {fileID: 4156254867753984794}
   m_Layer: 0
-  m_Name: SpinnerHolder
+  m_Name: A4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6460120442650320889
+--- !u!4 &4156254867753984795
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797970487159996673}
+  m_GameObject: {fileID: 4156254867753991396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,22 +32,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5595621705384497668
+--- !u!114 &4156254867753984794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797970487159996673}
+  m_GameObject: {fileID: 4156254867753991396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2184b76c738c9a74c914e31785afef6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  attackPrefab: {fileID: 4623110157437021726, guid: da92c07e0b13c0744993aa2e67154c7b, type: 3}
+  position: {x: 4, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 1
+  frequency: 1
+  lifespan: 21.333334
+  canExpire: 1
+  angle:
+  - 0
+  - 180
+  evenDist: 0
+  speed:
+  - 0
+  - 0
   curve: 0
-  waveAmp: 0
-  waveFreq: 0
+  delay: 2.6666667
+  size: 0.6
+  isEvent: 1
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  aiming: 0
+  chasePlayer: 1
+  detachPlayer: 1
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
   piercing: 0
-  lifespan: 0
   chaser: 0
+  accelSpinner: 1

@@ -70,9 +70,11 @@ MonoBehaviour:
   fromEyeR: 0
   aiming: 0
   chasePlayer: 1
+  detachPlayer: 0
   waveDat: {x: 0, y: 0}
   spawnLifespan: 0
   piercing: 0
+  chaser: 0
 --- !u!114 &940777463654877734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
   position: {x: 0.9, y: 1}
-  bounds: {x: 0.2, y: 0}
+  bounds: {x: 0.1, y: 0}
   burst: 1
   frequency: 0.1
   lifespan: 0
@@ -100,8 +102,8 @@ MonoBehaviour:
   - 3
   - 5
   curve: 0
-  delay: 0
-  size: 0.8
+  delay: 1
+  size: 0.6
   isEvent: 0
   relativeSpace: 0
   fromMouth: 0
@@ -109,9 +111,11 @@ MonoBehaviour:
   fromEyeR: 0
   aiming: 0
   chasePlayer: 0
+  detachPlayer: 0
   waveDat: {x: 0, y: 0}
   spawnLifespan: 0
   piercing: 0
+  chaser: 0
 --- !u!114 &940777463654877735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
   position: {x: 0.1, y: 1}
-  bounds: {x: 0.2, y: 0}
+  bounds: {x: 0.1, y: 0}
   burst: 1
   frequency: 0.1
   lifespan: 0
@@ -139,8 +143,8 @@ MonoBehaviour:
   - 3
   - 5
   curve: 0
-  delay: 0
-  size: 0.8
+  delay: 1
+  size: 0.6
   isEvent: 0
   relativeSpace: 0
   fromMouth: 0
@@ -148,6 +152,8 @@ MonoBehaviour:
   fromEyeR: 0
   aiming: 0
   chasePlayer: 0
+  detachPlayer: 0
   waveDat: {x: 0, y: 0}
   spawnLifespan: 0
   piercing: 0
+  chaser: 0

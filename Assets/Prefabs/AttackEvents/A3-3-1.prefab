@@ -73,6 +73,9 @@ MonoBehaviour:
   waveDat: {x: 5, y: 30}
   spawnLifespan: 0.5
   piercing: 1
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
 --- !u!1 &8284545992238515632
 GameObject:
   m_ObjectHideFlags: 0

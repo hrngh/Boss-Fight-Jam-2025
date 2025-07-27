@@ -38,12 +38,12 @@ public class BossPartMover : MonoBehaviour
             yVel += grav.y * Time.deltaTime * maxAccel * (1 - randomRat);
             if (Mathf.Abs(xVel) > maxSpeed) xVel *= .97f;
             if (Mathf.Abs(yVel) > maxSpeed) yVel *= .97f;
-            transform.Translate(new Vector2(xVel, yVel) * Time.deltaTime);
+            transform.Translate(new Vector2(xVel, yVel) * Time.deltaTime, Space.World);
 
         } else
         {
             Vector3 dir = (Player.Instance.transform.position - transform.position).normalized;
-            transform.localPosition = origPos + dir * eyeStrength;
+            transform.localPosition = origPos + dir * eyeStrength * GameManager.Instance.eyeStrengthMult;
         }
 
         if (rotateRange != 0)

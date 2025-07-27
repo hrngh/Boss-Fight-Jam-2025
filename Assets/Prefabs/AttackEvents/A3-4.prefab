@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 7770013282789860824, guid: 11eea597640e41845b0a078378c10060, type: 3}
-  position: {x: 2.5, y: 0}
+  position: {x: 3, y: 0}
   bounds: {x: 0, y: 0}
   burst: 6
   frequency: 1
@@ -72,3 +72,4 @@ MonoBehaviour:
   waveDat: {x: 0, y: 0}
   spawnLifespan: 0
   piercing: 0
+  chaser: 0

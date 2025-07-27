@@ -57,18 +57,23 @@ MonoBehaviour:
   - 0
   evenDist: 0
   speed:
-  - 4
-  - 4
+  - 2.5
+  - 2.5
   curve: 0
   delay: 1
-  size: 0.6
+  size: 0.8
   isEvent: 0
-  relativeSpace: 1
+  relativeSpace: 0
   fromMouth: 0
+  fromEyeL: 1
+  fromEyeR: 0
   aiming: 1
-  waveDat: {x: 7, y: 5}
-  spawnLifespan: 2
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 4, y: 4}
+  spawnLifespan: 3
   piercing: 1
+  chaser: 0
 --- !u!114 &6077667508533999250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,15 +98,20 @@ MonoBehaviour:
   - 0
   evenDist: 0
   speed:
-  - 4
-  - 4
+  - 2.5
+  - 2.5
   curve: 0
   delay: 1.5
-  size: 0.6
+  size: 0.8
   isEvent: 0
-  relativeSpace: 1
+  relativeSpace: 0
   fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 1
   aiming: 1
-  waveDat: {x: 7, y: 5}
-  spawnLifespan: 2
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 4, y: 4}
+  spawnLifespan: 3
   piercing: 1
+  chaser: 0

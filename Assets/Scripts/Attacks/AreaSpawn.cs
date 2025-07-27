@@ -22,8 +22,11 @@ public class AreaSpawn : AttackEvent
     public float spawnLifespan;
     public bool piercing;
     public bool chaser;
+    public bool accelSpinner;
+    public AudioSource audioSource;
 
     private float timer;
+    private float accelAngle;
 
     public override void Start(){
         base.Start();
@@ -37,38 +40,55 @@ public class AreaSpawn : AttackEvent
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
+            if (audioSource) audioSource.enabled = true;
             timer = frequency;
-            for (int i=0; i<burst; i++)
+            if (!accelSpinner)
             {
-                float spawnX = position.x + Random.Range(-bounds[0] / 2, bounds[0] / 2);
-                float spawnY = position.y + Random.Range(-bounds[1] / 2, bounds[1] / 2);
-                Vector3 spawnPos = relativeSpace ? transform.position + new Vector3(spawnX, spawnY) : GetBoxSpace(spawnX, spawnY);
-                if (fromMouth) spawnPos = GameManager.Instance.mouthTransform.position;
-                if (fromEyeL) spawnPos = GameManager.Instance.eyeLTransform.position;
-                if (fromEyeR) spawnPos = GameManager.Instance.eyeRTransform.position;
-                float spawnAngle = (evenDist ? angle[0] + i * (angle[1] - angle[0]) / (burst - 1) : Random.Range(angle[0], angle[1])) + (relativeSpace ? transform.eulerAngles.z : 0);
-                if (aiming) {
-                    Vector3 aim = Player.Instance.transform.position - spawnPos;
-                    spawnAngle = Vector2.Angle(Vector2.right, aim) * (aim.y < 0 ? -1 : 1);
-                }
-                if (!isEvent) {
-                    DoAttack(spawnPos, spawnAngle);
-                } else
+                for (int i = 0; i < burst; i++)
                 {
-                    if (!chasePlayer)
+                    float spawnX = position.x + Random.Range(-bounds[0] / 2, bounds[0] / 2);
+                    float spawnY = position.y + Random.Range(-bounds[1] / 2, bounds[1] / 2);
+                    Vector3 spawnPos = relativeSpace ? transform.position + new Vector3(spawnX, spawnY) : GetBoxSpace(spawnX, spawnY);
+                    if (fromMouth) spawnPos = GameManager.Instance.mouthTransform.position;
+                    if (fromEyeL) spawnPos = GameManager.Instance.eyeLTransform.position;
+                    if (fromEyeR) spawnPos = GameManager.Instance.eyeRTransform.position;
+                    float spawnAngle = (evenDist ? angle[0] + i * (angle[1] - angle[0]) / (burst - 1) : Random.Range(angle[0], angle[1])) + (relativeSpace ? transform.eulerAngles.z : 0);
+                    if (aiming)
                     {
-                        Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, spawnAngle));
-                    } else
+                        Vector3 aim = Player.Instance.transform.position - spawnPos;
+                        spawnAngle = Vector2.Angle(Vector2.right, aim) * (aim.y < 0 ? -1 : 1);
+                    }
+                    if (!isEvent)
                     {
-                        GameObject summon = Instantiate(attackPrefab, Player.Instance.transform);
-                        float radSpawnAngle = spawnAngle / 180 * Mathf.PI;
-                        spawnX = Mathf.Cos(radSpawnAngle) * position.x;
-                        spawnY = Mathf.Sin(radSpawnAngle) * position.x;
-                        summon.transform.localPosition = new Vector3(spawnX, spawnY);
-                        if (detachPlayer) summon.transform.parent = null;
-                        summon.transform.Rotate(Vector3.forward, spawnAngle+180);
+                        DoAttack(spawnPos, spawnAngle);
+                    }
+                    else
+                    {
+                        if (!chasePlayer)
+                        {
+                            Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, spawnAngle));
+                        }
+                        else
+                        {
+                            GameObject summon = Instantiate(attackPrefab, Player.Instance.transform);
+                            float radSpawnAngle = spawnAngle / 180 * Mathf.PI;
+                            spawnX = Mathf.Cos(radSpawnAngle) * position.x;
+                            spawnY = Mathf.Sin(radSpawnAngle) * position.x;
+                            summon.transform.localPosition = new Vector3(spawnX, spawnY);
+                            if (detachPlayer) summon.transform.parent = null;
+                            summon.transform.Rotate(Vector3.forward, spawnAngle + 180);
+                        }
                     }
                 }
+            } else
+            {
+                frequency = Mathf.Clamp(frequency * .9f, .083f, 1);
+                float radSpawnAngle = accelAngle / 180 * Mathf.PI;
+                float spawnX = Mathf.Cos(radSpawnAngle) * 6;
+                float spawnY = Mathf.Sin(radSpawnAngle) * 6;
+                Vector2 spawnPos = new Vector2(0, -1.85f) + new Vector2(spawnX, spawnY);
+                GameObject summon = Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, accelAngle + 180));
+                accelAngle += 22;
             }
         }
     }

@@ -49,12 +49,11 @@ public class Attack : MonoBehaviour
             if (GameManager.Instance.inPhase)
             {
                 Player.Instance.AddCapture();
-                Destroy(gameObject);
             } else
             {
                 Player.Instance.Hurt();
-                if(!piercing) Destroy(gameObject);
             }
+            if(!piercing) Destroy(gameObject);
         }
         if (piercing) return;
         if (collision.tag == "Wall")

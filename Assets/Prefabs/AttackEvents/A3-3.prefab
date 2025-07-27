@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8293076836906645942}
   - component: {fileID: 8293076836906645943}
+  - component: {fileID: -6118149589662259063}
   m_Layer: 0
   m_Name: A3-3
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   position: {x: 4, y: 0}
   bounds: {x: 0, y: 0}
   burst: 1
-  frequency: 0.8
+  frequency: 1
   lifespan: 0
   canExpire: 0
   angle:
@@ -72,3 +73,45 @@ MonoBehaviour:
   waveDat: {x: 0, y: 0}
   spawnLifespan: 0
   piercing: 0
+  chaser: 0
+--- !u!114 &-6118149589662259063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293076836906640969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 1
+  frequency: 2
+  lifespan: 0
+  canExpire: 0
+  angle:
+  - 0
+  - 0
+  evenDist: 0
+  speed:
+  - 2
+  - 2
+  curve: 0
+  delay: 4
+  size: 2
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 1
+  fromEyeL: 0
+  fromEyeR: 0
+  aiming: 1
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 5
+  piercing: 1
+  chaser: 0
