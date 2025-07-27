@@ -86,7 +86,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  period: 2
+  period: 2.5
   delay: 1
   size: 0.8
   holderPrefab: {fileID: 3797970487159996673, guid: 32b46a49f71ebef498be3b152618d3ae, type: 3}
@@ -143,7 +143,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  period: 2
+  period: 2.5
   delay: 1
   size: 0.8
   holderPrefab: {fileID: 3797970487159996673, guid: 32b46a49f71ebef498be3b152618d3ae, type: 3}

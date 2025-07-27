@@ -40,7 +40,11 @@ public class AreaSpawn : AttackEvent
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            if (audioSource) audioSource.enabled = true;
+            if (audioSource)
+            {
+                audioSource.volume = GameManager.Instance.volume;
+                audioSource.enabled = true;
+            }
             timer = frequency;
             if (!accelSpinner)
             {
@@ -82,7 +86,7 @@ public class AreaSpawn : AttackEvent
                 }
             } else
             {
-                frequency = Mathf.Clamp(frequency * .9f, .083f, 1);
+                frequency = Mathf.Clamp(frequency * .9f, .073f, 1);
                 float radSpawnAngle = accelAngle / 180 * Mathf.PI;
                 float spawnX = Mathf.Cos(radSpawnAngle) * 6;
                 float spawnY = Mathf.Sin(radSpawnAngle) * 6;

@@ -49,7 +49,7 @@ MonoBehaviour:
   position: {x: -2.5, y: 0}
   bounds: {x: 0, y: 0}
   burst: 1
-  frequency: 1
+  frequency: 0.5
   lifespan: 0
   canExpire: 0
   angle:
@@ -74,6 +74,8 @@ MonoBehaviour:
   spawnLifespan: 3
   piercing: 1
   chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
 --- !u!114 &6077667508533999250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +92,7 @@ MonoBehaviour:
   position: {x: 2.5, y: 0}
   bounds: {x: 0, y: 0}
   burst: 1
-  frequency: 1
+  frequency: 0.5
   lifespan: 0
   canExpire: 0
   angle:
@@ -101,7 +103,7 @@ MonoBehaviour:
   - 2.5
   - 2.5
   curve: 0
-  delay: 1.5
+  delay: 1
   size: 0.8
   isEvent: 0
   relativeSpace: 0
@@ -115,3 +117,5 @@ MonoBehaviour:
   spawnLifespan: 3
   piercing: 1
   chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}

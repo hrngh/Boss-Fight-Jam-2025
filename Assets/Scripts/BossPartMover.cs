@@ -43,7 +43,7 @@ public class BossPartMover : MonoBehaviour
         } else
         {
             Vector3 dir = (Player.Instance.transform.position - transform.position).normalized;
-            transform.localPosition = origPos + dir * eyeStrength * GameManager.Instance.eyeStrengthMult;
+            transform.localPosition = origPos + dir * eyeStrength * Mathf.Clamp01(GameManager.Instance.eyeStrengthMult);
         }
 
         if (rotateRange != 0)

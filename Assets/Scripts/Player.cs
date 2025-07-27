@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     public AudioClip shootSound;
     public AudioSource sfxSource2;
     public AudioClip hurtSound;
+    public AudioSource channelSource;
+    public AudioClip channelSound;
 
     private int health;
     private int captureCount;
@@ -134,6 +136,8 @@ public class Player : MonoBehaviour
             {
                 if (circlerCount < 6)
                 {
+                    channelSource.pitch = .55f + circlerCount * .03f;
+                    channelSource.PlayOneShot(channelSound);
                     circlers[circlerCount].SetActive(true);
                     circlerCount++;
                     GameManager.Instance.ChangeAttack();
@@ -151,7 +155,7 @@ public class Player : MonoBehaviour
                     circlerContainer.transform.localScale = Vector3.one;
                     circlerCount = 0;
                 }
-                Heal(1);
+                if (PlayerPrefs.GetInt("hard", 0) == 0) Heal(1);
                 captureCount = 0;
             }
         } else

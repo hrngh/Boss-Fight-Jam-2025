@@ -30,16 +30,20 @@ public class GameManager : MonoBehaviour
     private Bloom m_Bloom;
     private float finalCountdown = 23.67f;
     public float bloomStrength;
+    public float volume = 1;
 
     //stuff
     public Transform mouthTransform;
     public Transform eyeLTransform;
     public Transform eyeRTransform;
+    public GameObject[] audioPips;
     public GameObject[] tutorialTexts;
     public SpriteRenderer spamZ;
     public SpriteRenderer playerSprite;
+    public SpriteRenderer quitter;
     public GameObject happyBossContainer;
     public GameObject happyBossContainer2;
+    public GameObject happyBossContainer3;
     public GameObject screenFlashPrefab;
     public GameObject mainBossContainer;
     public Animator mouthAnim;
@@ -84,6 +88,7 @@ public class GameManager : MonoBehaviour
             happyBossContainer.SetActive(false);
             mainBossContainer.SetActive(true);
         }
+        volume = 1;
     }
 
     private void StartUp()
@@ -94,6 +99,51 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //audio
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            volume -= 0.25f;
+            if (volume == -0.25f)
+            {
+                volume = 1;
+                audioPips[0].SetActive(true);
+                audioPips[1].SetActive(true);
+                audioPips[2].SetActive(true);
+                audioPips[3].SetActive(false);
+            }
+            else
+            {
+                if (volume != 0)
+                {
+                    audioPips[(int)(volume * 4) - 1].SetActive(false);
+                } else
+                {
+                    audioPips[3].SetActive(true);
+                }
+            }
+            audioSource.volume = volume;
+            Player.Instance.sfxSource.volume = volume;
+            Player.Instance.sfxSource2.volume = volume;
+            Player.Instance.channelSource.volume = volume * .4f;
+        }
+
+        //quitting
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            quitter.color = new Color(1, 1, 1, quitter.color.a + Time.unscaledDeltaTime / 2);
+        }
+        else
+        {
+            quitter.color = new Color(1, 1, 1, quitter.color.a - Time.unscaledDeltaTime * 2);
+        }
+        if (state != State.dead && state != State.transition) eyeStrengthMult = (1 - quitter.color.a);
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            PlayerPrefs.SetInt("skipTutorial", 0);
+            PlayerPrefs.SetInt("hard", 0);
+        }
+
         if (testing)
         {
             audioSource.volume = 1;
@@ -117,7 +167,6 @@ public class GameManager : MonoBehaviour
                 testing = false;
                 StartPhaseChange(4);
             }
-            if (Input.GetKeyDown(KeyCode.P)) PlayerPrefs.SetInt("skipTutorial", 0);
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
@@ -132,7 +181,7 @@ public class GameManager : MonoBehaviour
         {
             case State.tutorial:
                 timer -= Time.deltaTime;
-                audioSource.volume = Mathf.Clamp01(audioSource.volume + Time.deltaTime);
+                audioSource.volume = Mathf.Clamp(audioSource.volume + Time.deltaTime, 0, volume);
                 inPhase = timer <= 8 / 3f;
                 if(tutorialTexts[1].activeInHierarchy) tutorialTexts[0].SetActive(!inPhase);
                 if (timer <= 0)
@@ -184,6 +233,7 @@ public class GameManager : MonoBehaviour
                     audioSource.Stop();
                     audioSource.clip = tracks[5];
                     audioSource.PlayDelayed(1.5f);
+                    PlayerPrefs.SetInt("hard", 1);
                 }
                 break;
             case State.phase5:
@@ -205,14 +255,20 @@ public class GameManager : MonoBehaviour
                         b.transform.localScale = Vector3.one * shrinkAmount;
                     }
                 }
-                if (timer <= .1f)
+                if (timer <= .2f)
                 {
-                    happyBossContainer2.SetActive(true);
+                    audioSource.pitch = .4f;
+                    audioSource.PlayOneShot(phaseChangeSound, 0.4f);
+                    audioSource.pitch = .5f;
+                    audioSource.PlayOneShot(phaseChangeSound, 0.4f);
+                    if (PlayerPrefs.GetInt("hard", 0) == 0) happyBossContainer2.SetActive(true);
+                    if (PlayerPrefs.GetInt("hard", 0) == 1) happyBossContainer3.SetActive(true);
                 }
                 if (timer <= 0)
                 {
                     timer = 1000;
                     Instantiate(screenFlashPrefab);
+                    Time.timeScale = 0;
                     Application.Quit();
                 }
                 break;
@@ -220,7 +276,7 @@ public class GameManager : MonoBehaviour
                 eyeStrengthMult = Mathf.Clamp01(eyeStrengthMult - Time.unscaledDeltaTime / 2);
                 if(playerSprite.color.a > 0) playerSprite.color = new Color(1, 1, 1, playerSprite.color.a - Time.unscaledDeltaTime * 2);
                 timer -= Time.unscaledDeltaTime;
-                if (timer <= 2f && attackIndex == 0)
+                if (timer <= 1.5f && attackIndex == 0)
                 {
                     attackIndex = 1;
                     Instantiate(screenFlashPrefab).GetComponent<Attack>().lifespan = 2f;
@@ -232,6 +288,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.transition:
                 timer -= Time.deltaTime;
+                eyeStrengthMult = Mathf.Clamp(eyeStrengthMult + Time.deltaTime * 2, -10, 1);
                 inPhase = false;
                 if (timer <= 0)
                 {
@@ -326,17 +383,19 @@ public class GameManager : MonoBehaviour
         ClearStuff();
         if (i == 1)
         {
+            eyeStrengthMult = -3f;
             Instantiate(screenFlashPrefab);
             tutorialTexts[0].SetActive(false);
             tutorialTexts[1].SetActive(false);
-            if(tutorialTexts[2]) tutorialTexts[2].SetActive(false);
+            tutorialTexts[3].SetActive(false);
+            if (tutorialTexts[2]) tutorialTexts[2].SetActive(false);
             happyBossContainer.SetActive(false);
             mainBossContainer.SetActive(true);
         } else
         {
             PlayerPrefs.SetInt("skipTutorial", 1);
         }
-        Player.Instance.Heal(5);
+        if(i != 4) Player.Instance.Heal(5);
         newPhase = i;
         state = State.transition;
         timer = newPhase == 2 ? 0 : 4 / 3f;
