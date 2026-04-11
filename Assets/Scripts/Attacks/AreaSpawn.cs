@@ -69,11 +69,29 @@ public class AreaSpawn : AttackEvent
                     {
                         if (!chasePlayer)
                         {
-                            Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, spawnAngle));
+                            GameObject attack = Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, spawnAngle));
+                            if (isEvent) {
+                                attack.GetComponent<AttackEvent>().sound = sound;
+                                attack.GetComponent<AttackEvent>().look = look;
+                            } else
+                            {
+                                attack.GetComponent<Attack>().sound = sound;
+                                attack.GetComponent<Attack>().look = look;
+                            }
                         }
                         else
                         {
                             GameObject summon = Instantiate(attackPrefab, Player.Instance.transform);
+                            if (isEvent)
+                            {
+                                summon.GetComponent<AttackEvent>().sound = sound;
+                                summon.GetComponent<AttackEvent>().look = look;
+                            }
+                            else
+                            {
+                                summon.GetComponent<Attack>().sound = sound;
+                                summon.GetComponent<Attack>().look = look;
+                            }
                             float radSpawnAngle = spawnAngle / 180 * Mathf.PI;
                             spawnX = Mathf.Cos(radSpawnAngle) * position.x;
                             spawnY = Mathf.Sin(radSpawnAngle) * position.x;
@@ -91,6 +109,16 @@ public class AreaSpawn : AttackEvent
                 float spawnY = Mathf.Sin(radSpawnAngle) * 6;
                 Vector2 spawnPos = new Vector2(0, -1.85f) + new Vector2(spawnX, spawnY);
                 GameObject summon = Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, accelAngle + 180));
+                if (isEvent)
+                {
+                    summon.GetComponent<AttackEvent>().sound = sound;
+                    summon.GetComponent<AttackEvent>().look = look;
+                }
+                else
+                {
+                    summon.GetComponent<Attack>().sound = sound;
+                    summon.GetComponent<Attack>().look = look;
+                }
                 accelAngle += 25;
             }
         }
@@ -99,6 +127,16 @@ public class AreaSpawn : AttackEvent
     private void DoAttack(Vector2 spawnPos, float spawnAngle)
     {
         Attack attack = Instantiate(attackPrefab, spawnPos, Quaternion.Euler(0, 0, spawnAngle)).GetComponent<Attack>();
+        if (isEvent)
+        {
+            attack.GetComponent<AttackEvent>().sound = sound;
+            attack.GetComponent<AttackEvent>().look = look;
+        }
+        else
+        {
+            attack.GetComponent<Attack>().sound = sound;
+            attack.GetComponent<Attack>().look = look;
+        }
         attack.transform.localScale = new Vector3(size, size, size);
         float spawnSpeed = Random.Range(speed[0], speed[1]);
         spawnSpeed = Mathf.Round(spawnSpeed * 4) / 4;

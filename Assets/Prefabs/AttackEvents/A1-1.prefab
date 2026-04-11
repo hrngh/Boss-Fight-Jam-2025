@@ -53,6 +53,8 @@ MonoBehaviour:
   frequency: 0.5
   lifespan: 0
   canExpire: 0
+  sound: 1
+  look: 0
   angle:
   - 0
   - 0
@@ -96,6 +98,8 @@ MonoBehaviour:
   frequency: 1.5
   lifespan: 0
   canExpire: 0
+  sound: 0
+  look: 2
   angle:
   - -90
   - -90

@@ -11,14 +11,16 @@ public class Attack : MonoBehaviour
     public bool piercing;
     public float lifespan;
     public bool chaser;
+    public SFXManager.AttackType sound;
+    public SpriteManager.AttackType look;
 
     private float timer;
 
     void Start()
     {
         if (GameManager.Instance) GameManager.Instance.attacks.Add(this);
-        //TODO sounds
-        //TODO sprites
+        if (SFXManager.Instance) SFXManager.Instance.PlayAttack(sound);
+        if (SpriteManager.Instance && GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().sprite = SpriteManager.Instance.GrabAttack(look);
     }
 
     void Update()

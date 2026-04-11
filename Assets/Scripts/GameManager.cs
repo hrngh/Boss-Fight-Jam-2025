@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
@@ -37,6 +38,12 @@ public class GameManager : MonoBehaviour
     public PostProcessVolume m_Volume;
     public AudioSource audioSource;
     public GameObject[] attackMoves;
+    public GameObject[] scorePrefabs;
+    public Transform canvasT;
+    public TextMeshProUGUI endScoreText;
+    public TextMeshProUGUI scoreText;
+    private float displayScore;
+    private float score;
     private List<GameObject>[] attackFreqs = new List<GameObject>[3];
 
     void Start()
@@ -47,7 +54,6 @@ public class GameManager : MonoBehaviour
         events = new HashSet<AttackEvent>();
         attacks = new HashSet<Attack>();
         m_Volume.profile.TryGetSettings<Bloom>(out m_Bloom);
-        audioSource.volume = 0;
         attackFreqs[0] = new List<GameObject>(attackMoves);
         for (int i=1; i<attackFreqs.Length; i++)
         {
@@ -107,32 +113,48 @@ public class GameManager : MonoBehaviour
                     ClearStuff();
                     state = State.waiting;
                     timer = 1;
+                    AddScore(1000, Player.Instance.transform.position);
                 }
                 break;
             case State.dead:
                 eyeStrengthMult = Mathf.Clamp01(eyeStrengthMult - Time.unscaledDeltaTime / 2);
                 if (playerSprite.color.a > 0) playerSprite.color = new Color(1, 1, 1, playerSprite.color.a - Time.unscaledDeltaTime * 2);
-                //TODO fade in score text/prompt to continue
+                if (endScoreText.color.a < 1) endScoreText.color = new Color(1, 0, 0, endScoreText.color.a + Time.unscaledDeltaTime * 2);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    state = State.resetting;
+                }
                 break;
             case State.resetting:
                 eyeStrengthMult = Mathf.Clamp01(eyeStrengthMult - Time.unscaledDeltaTime / 2);
                 if (playerSprite.color.a > 0) playerSprite.color = new Color(1, 1, 1, playerSprite.color.a - Time.unscaledDeltaTime * 2);
+                if (endScoreText.color.a < 1) endScoreText.color = new Color(1, 0, 0, endScoreText.color.a + Time.unscaledDeltaTime * 2);
                 timer -= Time.unscaledDeltaTime;
                 if (timer <= 1.5f && timer > 0)
                 {
                     timer -= 1.5f;
-                    Instantiate(screenFlashPrefab).GetComponent<Attack>().lifespan = 2f;
+                    Instantiate(screenFlashPrefab, canvasT).GetComponent<Attack>().lifespan = 2f;
                 }
-                if (timer <= -1.5)
+                if (timer <= -1)
                 {
                     SceneManager.LoadScene("MainScene");
                 }
                 break;
         }
-        //TODO Use for on hit? m_Bloom.intensity.value = bloomStrength;
+
+        // Score text
+        if (displayScore < score)
+        {
+            displayScore = Mathf.Clamp(displayScore + Time.deltaTime * Mathf.Clamp(score - displayScore, 200, 1000) * 1.5f, 0, score);
+            scoreText.text = string.Format("Score:\n{0:D6}", (int)displayScore);
+        }
         m_Bloom.intensity.value = Mathf.Clamp(m_Bloom.intensity.value-(bloomStrength-1)*Time.deltaTime*2, 1, bloomStrength);
     }
-    
+    public void DoBloom()
+    {
+        m_Bloom.intensity.value = bloomStrength;
+    }
+
     public void ChangeAttack()
     {
         // Override for testing
@@ -167,14 +189,25 @@ public class GameManager : MonoBehaviour
         timer = attack.GetComponent<AttackDuration>().duration;
     }
 
+    public void AddScore(int amt, Vector3 pos)
+    {
+        pos = pos + new Vector3(0, 0.75f);
+        Vector2 newPos = new Vector2((pos.x / 9 +1) * 960, (pos.y / 81 * 16 + 1) * 540);
+        Instantiate(scorePrefabs[amt == 50 ? 0 : 1], canvasT).transform.position = newPos;
+        score += amt;
+    }
+
     public float eyeStrengthMult = 1;
     public void DoDeath()
     {
+        endScoreText.color = new Color(1, 0, 0, -2);
+        endScoreText.text = string.Format("Score: {0:D6}\n\npress space to restart", (int)score);
+        ClearStuff();
         audioSource.Stop();
         audioSource.pitch = .5f;
         Time.timeScale = 0;
         state = State.dead;
-        timer = 4f;
+        timer = 2f;
     }
 
     public void HurtBoss()
@@ -183,7 +216,7 @@ public class GameManager : MonoBehaviour
         {
             b.Chaos();
         }
-        //TODO update score + score text
+        SFXManager.Instance.HurtBoss();
     }
 
     void ClearStuff()

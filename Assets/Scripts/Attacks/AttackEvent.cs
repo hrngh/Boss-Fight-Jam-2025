@@ -12,6 +12,8 @@ public abstract class AttackEvent : MonoBehaviour
     public float frequency;
     public float lifespan;
     public bool canExpire;
+    public SFXManager.AttackType sound;
+    public SpriteManager.AttackType look;
 
     public virtual void Start()
     {

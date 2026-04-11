@@ -60,6 +60,13 @@ public class Player : MonoBehaviour
             if (a <= 0) doneWASD = true;
         }
 
+        // Randomization
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SFXManager.Instance.RandomizeSounds();
+            SpriteManager.Instance.RandomizeSprites();
+        }
+
         // attacking
         if (Input.GetKey(KeyCode.Z) || Input.GetKeyDown(KeyCode.K))
         {
@@ -87,6 +94,7 @@ public class Player : MonoBehaviour
     public void Hurt()
     {
         if (iFrameTimer > 0) return;
+        GameManager.Instance.DoBloom();
         iFrameTimer = .5f;
         health--;
         sfxSource2.PlayOneShot(hurtSound);

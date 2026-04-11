@@ -37,6 +37,8 @@ public class Spinner : AttackEvent
                 projectiles[i] = Instantiate(attackPrefab, holders[i].transform);
                 projectiles[i].transform.localScale = Vector3.one * size;
                 projectiles[i].GetComponent<Attack>().piercing = true;
+                projectiles[i].GetComponent<Attack>().sound = sound;
+                projectiles[i].GetComponent<Attack>().look = look;
             }
         }
         if(spawned)

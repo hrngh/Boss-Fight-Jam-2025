@@ -23,6 +23,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         lifespan -= Time.deltaTime;
+        if (Time.timeScale == 0) Destroy(gameObject);
         if (dead)
         {
             if (lifespan <= 0) Destroy(gameObject);
@@ -32,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
         {
             lifespan = 0.5f;
             anim.Play("attackExplode");
+            GameManager.Instance.AddScore(50, transform.position);
             GameManager.Instance.HurtBoss();
             dead = true;
         }
