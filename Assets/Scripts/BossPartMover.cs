@@ -9,6 +9,7 @@ public class BossPartMover : MonoBehaviour
     public float rotateAccel;
     public float rotateRange;
     public bool isEye;
+    public bool isHand;
     public float eyeStrength;
     private float maxSpeed = .8f;
 
@@ -43,7 +44,8 @@ public class BossPartMover : MonoBehaviour
             if (Mathf.Abs(yVel) > maxSpeed) yVel *= .97f;
             transform.Translate(new Vector2(xVel, yVel) * Time.deltaTime, Space.World);
 
-        } else
+        }
+        else
         {
             Vector3 dir = (Player.Instance.transform.position - transform.position).normalized;
             transform.localPosition = origPos + dir * eyeStrength * Mathf.Clamp01(GameManager.Instance.eyeStrengthMult);
@@ -61,23 +63,25 @@ public class BossPartMover : MonoBehaviour
             rotVel += rot_grav * Time.deltaTime * rotateAccel * (1 - rot_randomRat);
             transform.Rotate(0, 0, rotVel * Time.deltaTime);
         }
+        if (isHand)
+        {
+            transform.rotation = Quaternion.FromToRotation(Vector3.down, Player.Instance.transform.position - transform.position);
+        }
     }
 
     public void Chaos()
     {
-        float chaosScale = 1.25f;
-        xVel *= chaosScale;
-        yVel *= chaosScale;
-        rotVel *= chaosScale;
+        Invoke("Order", 0.2f);
+        float chaosScale = .5f;
+        float randRot = Random.Range(0, Mathf.PI * 2);
+        xVel += Mathf.Cos(randRot) * chaosScale;
+        yVel += Mathf.Sin(randRot) * chaosScale;
+        rotVel += Random.Range(-1, 1) * chaosScale;
     }
     public void Order()
     {
         Vector3 grav = origPos - transform.localPosition;
         xVel = grav.x / 2;
         yVel = grav.y / 2;
-        float currentRot = transform.localEulerAngles.z % 360;
-        if (currentRot < -180) currentRot += 360;
-        if (currentRot > 180) currentRot -= 360;
-        rotVel = -currentRot / 2;
     }
 }

@@ -42,7 +42,6 @@ public class AreaSpawn : AttackEvent
         {
             if (audioSource)
             {
-                audioSource.volume = GameManager.Instance.volume;
                 audioSource.enabled = true;
             }
             timer = frequency;

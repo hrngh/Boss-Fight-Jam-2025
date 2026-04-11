@@ -17,6 +17,8 @@ public class Attack : MonoBehaviour
     void Start()
     {
         if (GameManager.Instance) GameManager.Instance.attacks.Add(this);
+        //TODO sounds
+        //TODO sprites
     }
 
     void Update()
@@ -46,13 +48,7 @@ public class Attack : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (GameManager.Instance.inPhase)
-            {
-                Player.Instance.AddCapture();
-            } else
-            {
-                Player.Instance.Hurt();
-            }
+            Player.Instance.Hurt();
             if(!piercing) Destroy(gameObject);
         }
         if (piercing) return;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7271137844015544161}
   - component: {fileID: 7271137844015544160}
+  - component: {fileID: -4871928718440672374}
   m_Layer: 0
   m_Name: A1-7
   m_TagString: Untagged
@@ -24,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7271137844015540382}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7271137844015544160
 MonoBehaviour:
@@ -58,8 +59,33 @@ MonoBehaviour:
   speed:
   - 2
   - 2
+  curve: 0
   delay: 1
   size: 0.4
   isEvent: 0
   relativeSpace: 1
   fromMouth: 1
+  fromEyeL: 0
+  fromEyeR: 0
+  aiming: 0
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 0
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
+--- !u!114 &-4871928718440672374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7271137844015540382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284b4eb558e7b446b0fde4b62f080a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackDuration
+  duration: 5
