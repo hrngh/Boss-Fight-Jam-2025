@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Spinner : AttackEvent
 {
-    public float speed;
+    public AnimationCurve speed;
+    public float speedPeriod;
     public AnimationCurve radius;
-    public float period;
+    public float radPeriod;
     public float delay;
     public float size = 1;
 
@@ -43,11 +44,12 @@ public class Spinner : AttackEvent
         }
         if(spawned)
         {
+            float evalPoint = timer % speedPeriod / speedPeriod;
             foreach (GameObject h in holders)
             {
-                h.transform.Rotate(Vector3.forward, Time.deltaTime * speed);
+                h.transform.Rotate(Vector3.forward, Time.deltaTime * speed.Evaluate(evalPoint));
             }
-            float evalPoint = timer%period / period;
+            evalPoint = timer%radPeriod / radPeriod;
             foreach (GameObject p in projectiles)
             {
                 p.transform.localPosition = Vector3.right * radius.Evaluate(evalPoint);

@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class TrackMover : MonoBehaviour
 {
-    public AnimationCurve x;
-    public AnimationCurve y;
+    public AnimationCurve lerp;
     public float time;
+    public Vector3 start;
+    public Vector3 end;
 
     private float timer;
-    private Vector3 start;
-    void Start()
-    {
-        start = transform.position;
-    }
 
     void Update()
     {
         timer += Time.deltaTime;
-        transform.position = start + new Vector3(x.Evaluate(timer % time / time), y.Evaluate(timer % time / time));
+        transform.position = Vector3.Lerp(start, end, lerp.Evaluate(timer % time / time));
     }
 }

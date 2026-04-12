@@ -15,6 +15,8 @@ public class AreaSpawn : AttackEvent
     public bool fromMouth;
     public bool fromEyeL;
     public bool fromEyeR;
+    public bool fromHandL;
+    public bool fromHandR;
     public bool aiming;
     public bool chasePlayer;
     public bool detachPlayer;
@@ -40,6 +42,7 @@ public class AreaSpawn : AttackEvent
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
+            if (SFXManager.Instance) SFXManager.Instance.PlayAttack(sound);
             if (audioSource)
             {
                 audioSource.enabled = true;
@@ -55,6 +58,8 @@ public class AreaSpawn : AttackEvent
                     if (fromMouth) spawnPos = GameManager.Instance.mouthTransform.position;
                     if (fromEyeL) spawnPos = GameManager.Instance.eyeLTransform.position;
                     if (fromEyeR) spawnPos = GameManager.Instance.eyeRTransform.position;
+                    if (fromHandL) spawnPos = GameManager.Instance.handLTransform.position;
+                    if (fromHandR) spawnPos = GameManager.Instance.handRTransform.position;
                     float spawnAngle = (evenDist ? angle[0] + i * (angle[1] - angle[0]) / (burst - 1) : Random.Range(angle[0], angle[1])) + (relativeSpace ? transform.eulerAngles.z : 0);
                     if (aiming)
                     {

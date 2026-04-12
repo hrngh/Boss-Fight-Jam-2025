@@ -19,7 +19,6 @@ public class Attack : MonoBehaviour
     void Start()
     {
         if (GameManager.Instance) GameManager.Instance.attacks.Add(this);
-        if (SFXManager.Instance) SFXManager.Instance.PlayAttack(sound);
         if (SpriteManager.Instance && GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().sprite = SpriteManager.Instance.GrabAttack(look);
     }
 

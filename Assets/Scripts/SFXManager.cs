@@ -50,7 +50,7 @@ public class SFXManager : MonoBehaviour
 
     public void HurtBoss()
     {
-        bossSource.pitch = Random.Range(.8f, 1.2f);
+        bossSource.pitch = Random.Range(.8f, 1.1f);
         bossSource.PlayOneShot(bossHurtSound[Random.Range(0, bossHurtSound.Length)]);
     }
 
