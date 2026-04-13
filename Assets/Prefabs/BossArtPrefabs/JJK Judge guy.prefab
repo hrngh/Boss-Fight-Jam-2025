@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4088873792292525117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6937013477834254398}
+  - component: {fileID: 6364401315343414157}
+  m_Layer: 0
+  m_Name: JJK Judge guy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6937013477834254398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088873792292525117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.16209, y: 0.94716, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6364401315343414157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088873792292525117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f351eb9ef0be15468cb32848ca5b4ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpriteList
+  eye: {fileID: 21300000, guid: a7b2fce8f2114fc46864cbdaecc708c2, type: 3}
+  eyeR: {fileID: 21300000, guid: ef6b801482345c547bcfa8d326412b0f, type: 3}
+  pupil: {fileID: 21300000, guid: f0ff0c7df449c8d4fb7a0f976cd5e192, type: 3}
+  pupilR: {fileID: 21300000, guid: 4deb5b5c9538980438f68ce886797644, type: 3}
+  hand: {fileID: 21300000, guid: 28999c24b39c74545a5f0d4ad023bab9, type: 3}
+  handR: {fileID: 21300000, guid: dba86b327c19b42408809c5b53582fc4, type: 3}
+  mouth: {fileID: 0}
+  body: {fileID: 21300000, guid: c243598e023e2ea4ea6f0a961b02dd1f, type: 3}
+  eyeStrength: 0
+  eyeStrengthR: 0
