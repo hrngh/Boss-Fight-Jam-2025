@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class BossSpriteTester : MonoBehaviour
 {
     [SerializeField] private BossSpriteList spriteList;
@@ -18,7 +19,6 @@ public class BossSpriteTester : MonoBehaviour
         
     }
 
-    [ExecuteInEditMode]
     void Update()
     {
         BossSpriteList boss = spriteList;
