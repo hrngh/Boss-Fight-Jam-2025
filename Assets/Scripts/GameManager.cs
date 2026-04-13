@@ -120,15 +120,13 @@ public class GameManager : MonoBehaviour
                 eyeStrengthMult = Mathf.Clamp01(eyeStrengthMult - Time.unscaledDeltaTime / 2);
                 if (playerSprite.color.a > 0) playerSprite.color = new Color(1, 1, 1, playerSprite.color.a - Time.unscaledDeltaTime * 2);
                 if (endScoreText.color.a < 1) endScoreText.color = new Color(1, 0, 0, endScoreText.color.a + Time.unscaledDeltaTime * 2);
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) && endScoreText.color.a >= 1)
                 {
                     state = State.resetting;
                 }
                 break;
             case State.resetting:
                 eyeStrengthMult = Mathf.Clamp01(eyeStrengthMult - Time.unscaledDeltaTime / 2);
-                if (playerSprite.color.a > 0) playerSprite.color = new Color(1, 1, 1, playerSprite.color.a - Time.unscaledDeltaTime * 2);
-                if (endScoreText.color.a < 1) endScoreText.color = new Color(1, 0, 0, endScoreText.color.a + Time.unscaledDeltaTime * 2);
                 timer -= Time.unscaledDeltaTime;
                 if (timer <= 1.5f && timer > 0)
                 {
@@ -201,6 +199,7 @@ public class GameManager : MonoBehaviour
     public void DoDeath()
     {
         endScoreText.color = new Color(1, 0, 0, -2);
+        scoreText.text = string.Format("Score:\n{0:D6}", (int)displayScore);
         endScoreText.text = string.Format("Score: {0:D6}\n\npress space to restart", (int)score);
         ClearStuff();
         audioSource.Stop();

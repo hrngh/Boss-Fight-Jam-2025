@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     public float speed;
+    public float dashSpeedMult;
+    public float dashTime;
+    public float dashDowntime;
     public AnimationCurve attackSlowRatio;
     public AnimationCurve attackCurve;
     public float attackTime;
@@ -41,6 +44,8 @@ public class Player : MonoBehaviour
         iFrameTimer -= Time.deltaTime;
     }
 
+    private Vector2 dashVel;
+    private float dashTimer;
     private void DoInputs()
     {
         //inputs
@@ -49,7 +54,32 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) vel += Vector2.up;
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) vel += Vector2.right;
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) vel += Vector2.down;
+
+        // Dashing
+        dashTimer -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space) && dashTimer <= -dashDowntime)
+        {
+            dashVel = vel * dashSpeedMult;
+            dashTimer = dashTime;
+            iFrameTimer = Mathf.Max(dashTime + 0.1f, iFrameTimer);
+        }
+        if (dashTimer > 0)
+        {
+            vel = dashVel;
+        }
+        if (!hitbox.enabled)
+        {
+            hitbox.enabled = true;
+        }
+        if (dashTimer-Time.deltaTime > -.1f && dashTimer <= .1f)
+        {
+            hitbox.enabled = false;
+        }
+
+        // Move
         rb.linearVelocity = vel * speed;
+
+        // WASD tutorial
         if (!doneWASD && vel.magnitude != 0)
         {
             float a = wasd[0].color.a - Time.deltaTime / 1.5f;
@@ -68,7 +98,7 @@ public class Player : MonoBehaviour
         }
 
         // attacking
-        if (Input.GetKey(KeyCode.Z) || Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.K))
         {
             if (!doneZ)
             {
@@ -91,15 +121,16 @@ public class Player : MonoBehaviour
         }
     }
     public float iFrameTimer;
-    public void Hurt()
+    public bool Hurt()
     {
-        if (iFrameTimer > 0) return;
+        if (iFrameTimer > 0) return dashTime > -.1f;
         GameManager.Instance.DoBloom();
         iFrameTimer = .5f;
         health--;
         sfxSource2.PlayOneShot(hurtSound);
         healthbar.transform.localScale = new Vector3(8f * health/maxHealth, healthbar.transform.localScale.y, 1);
         if (health == 0) GameManager.Instance.DoDeath();
+        return false;
     }
     public void Heal(int quantity)
     {

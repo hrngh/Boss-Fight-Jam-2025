@@ -12,6 +12,7 @@ public class BossPartMover : MonoBehaviour
     public bool isHand;
     public float eyeStrength;
     private float maxSpeed = .8f;
+    public bool possessed;
 
     private Vector3 origPos;
     private float xVel;
@@ -31,6 +32,7 @@ public class BossPartMover : MonoBehaviour
 
     void Update()
     {
+        if (possessed) return;
         if (!isEye)
         {
             //movement

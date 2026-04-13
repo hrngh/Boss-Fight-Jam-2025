@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour
     void Start()
     {
         if (GameManager.Instance) GameManager.Instance.attacks.Add(this);
-        if (SpriteManager.Instance && GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().sprite = SpriteManager.Instance.GrabAttack(look);
+        if (look != SpriteManager.AttackType.none && SpriteManager.Instance && GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().sprite = SpriteManager.Instance.GrabAttack(look);
     }
 
     void Update()
@@ -49,8 +49,8 @@ public class Attack : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Player.Instance.Hurt();
-            if(!piercing) Destroy(gameObject);
+            bool dashed = Player.Instance.Hurt();
+            if(!dashed && !piercing) Destroy(gameObject);
         }
         if (piercing) return;
         if (collision.tag == "Wall")

@@ -26,7 +26,8 @@ public class SpriteManager : MonoBehaviour
     {
         sharp,
         blunt,
-        magic
+        magic,
+        none
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

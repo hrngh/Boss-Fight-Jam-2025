@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1061819769449257086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9009802574479240217}
+  - component: {fileID: 8095166581792831489}
+  - component: {fileID: 945619588484054367}
+  - component: {fileID: 4494376247253947224}
+  m_Layer: 0
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9009802574479240217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061819769449257086}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.53626, y: -1.45247, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8095166581792831489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061819769449257086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284b4eb558e7b446b0fde4b62f080a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackDuration
+  duration: 5
+--- !u!114 &945619588484054367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061819769449257086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 1
+  frequency: 0.25
+  lifespan: 0
+  canExpire: 0
+  sound: 0
+  look: 0
+  angle:
+  - 0
+  - 0
+  evenDist: 0
+  speed:
+  - 5
+  - 5
+  curve: 0
+  delay: 0
+  size: 0.25
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 1
+  fromEyeR: 0
+  fromHandL: 0
+  fromHandR: 0
+  aiming: 1
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 0
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
+--- !u!114 &4494376247253947224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061819769449257086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 1
+  frequency: 0.5
+  lifespan: 0
+  canExpire: 0
+  sound: 0
+  look: 2
+  angle:
+  - 0
+  - 0
+  evenDist: 0
+  speed:
+  - 2.5
+  - 2.5
+  curve: 0
+  delay: 0
+  size: 0.5
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 1
+  fromHandL: 0
+  fromHandR: 0
+  aiming: 1
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 5, y: 5}
+  spawnLifespan: 0
+  piercing: 0
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
