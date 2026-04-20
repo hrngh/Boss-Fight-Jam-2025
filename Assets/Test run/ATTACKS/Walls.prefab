@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8330508707773324478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080107830984187477}
+  - component: {fileID: 299882445888412713}
+  - component: {fileID: 686598809267953193}
+  - component: {fileID: 9102584027171596422}
+  - component: {fileID: 3144993571456985547}
+  - component: {fileID: -8251698602451153062}
+  m_Layer: 0
+  m_Name: Walls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080107830984187477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330508707773324478}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.23407, y: 0.10033, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &299882445888412713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330508707773324478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284b4eb558e7b446b0fde4b62f080a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackDuration
+  duration: 4
+--- !u!114 &686598809267953193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330508707773324478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 1}
+  bounds: {x: 0, y: 0.5}
+  burst: 10
+  frequency: 0.4
+  lifespan: 0
+  canExpire: 0
+  sound: 3
+  look: 2
+  angle:
+  - 0
+  - 0
+  evenDist: 0
+  speed:
+  - 10
+  - 10
+  curve: 0
+  delay: 0
+  size: 0.4
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  fromHandL: 0
+  fromHandR: 0
+  aiming: 0
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 0
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
+--- !u!114 &9102584027171596422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330508707773324478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 1, y: 0}
+  bounds: {x: 0, y: 0.5}
+  burst: 10
+  frequency: 0.4
+  lifespan: 0
+  canExpire: 0
+  sound: 3
+  look: 2
+  angle:
+  - 180
+  - 180
+  evenDist: 0
+  speed:
+  - 10
+  - 10
+  curve: 0
+  delay: 0
+  size: 0.4
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  fromHandL: 0
+  fromHandR: 0
+  aiming: 0
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 0
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
+--- !u!114 &3144993571456985547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330508707773324478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 1
+  frequency: 0.2
+  lifespan: 0
+  canExpire: 0
+  sound: 1
+  look: 1
+  angle:
+  - 0
+  - 0
+  evenDist: 0
+  speed:
+  - 6
+  - 7
+  curve: 0
+  delay: 0
+  size: 1
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  fromHandL: 1
+  fromHandR: 0
+  aiming: 1
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 1
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
+--- !u!114 &-8251698602451153062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330508707773324478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 1
+  frequency: 0.2
+  lifespan: 0
+  canExpire: 0
+  sound: 1
+  look: 1
+  angle:
+  - 0
+  - 0
+  evenDist: 0
+  speed:
+  - 6
+  - 7
+  curve: 0
+  delay: 0
+  size: 1
+  isEvent: 0
+  relativeSpace: 0
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  fromHandL: 0
+  fromHandR: 1
+  aiming: 1
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 0
+  piercing: 1
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}

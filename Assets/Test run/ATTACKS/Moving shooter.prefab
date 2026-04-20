@@ -1,0 +1,323 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3283725807029752420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285228877000214578}
+  - component: {fileID: 1160659274723853472}
+  - component: {fileID: 6826603002634017086}
+  m_Layer: 0
+  m_Name: SpawnerTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285228877000214578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283725807029752420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.5, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 610314089412575877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160659274723853472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283725807029752420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 3
+  frequency: 0.1
+  lifespan: 0
+  canExpire: 0
+  sound: 3
+  look: 1
+  angle:
+  - -95
+  - -85
+  evenDist: 1
+  speed:
+  - 6
+  - 6
+  curve: 0
+  delay: 0
+  size: 0.5
+  isEvent: 0
+  relativeSpace: 1
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  fromHandL: 0
+  fromHandR: 0
+  aiming: 0
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 1
+  piercing: 1
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
+--- !u!114 &6826603002634017086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283725807029752420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce194f14ccee86a4888ecb9e7a8bc162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrackMover
+  lerp:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loop: 0
+  isDone: 0
+  onTrack: 0
+  time: 5
+  delay: 0
+  start: {x: -4.5, y: 1.5, z: 0}
+  end: {x: 4.5, y: 1.5, z: 0}
+  isHandL: 0
+  isHandR: 0
+  targetPlayer: 0
+--- !u!1 &5219033586441985580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610314089412575877}
+  - component: {fileID: 7046286135949740419}
+  - component: {fileID: 1548937265913878680}
+  m_Layer: 0
+  m_Name: Moving shooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &610314089412575877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219033586441985580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1285228877000214578}
+  - {fileID: 8323436295320300049}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7046286135949740419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219033586441985580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d284b4eb558e7b446b0fde4b62f080a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackDuration
+  duration: 5
+--- !u!114 &1548937265913878680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219033586441985580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184b76c738c9a74c914e31785afef6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attack
+  speed: 0
+  curve: 0
+  waveAmp: 0
+  waveFreq: 0
+  piercing: 0
+  lifespan: 0
+  chaser: 0
+  sound: 0
+  look: 0
+--- !u!1 &6424031709569563085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8323436295320300049}
+  - component: {fileID: 7031506255227437825}
+  - component: {fileID: 2876244451416111000}
+  m_Layer: 0
+  m_Name: SpawnerBot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8323436295320300049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424031709569563085}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.5, y: -4.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 610314089412575877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7031506255227437825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424031709569563085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ddbc4c05036ec488f6bd148bb82a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSpawn
+  attackPrefab: {fileID: 8033219466191616068, guid: 118d59f627fafdd4ea50e6adc5d2c3c4, type: 3}
+  position: {x: 0, y: 0}
+  bounds: {x: 0, y: 0}
+  burst: 3
+  frequency: 0.1
+  lifespan: 0
+  canExpire: 0
+  sound: 3
+  look: 1
+  angle:
+  - 85
+  - 95
+  evenDist: 1
+  speed:
+  - 6
+  - 6
+  curve: 0
+  delay: 0
+  size: 0.5
+  isEvent: 0
+  relativeSpace: 1
+  fromMouth: 0
+  fromEyeL: 0
+  fromEyeR: 0
+  fromHandL: 0
+  fromHandR: 0
+  aiming: 0
+  chasePlayer: 0
+  detachPlayer: 0
+  waveDat: {x: 0, y: 0}
+  spawnLifespan: 1
+  piercing: 1
+  chaser: 0
+  accelSpinner: 0
+  audioSource: {fileID: 0}
+--- !u!114 &2876244451416111000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424031709569563085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce194f14ccee86a4888ecb9e7a8bc162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrackMover
+  lerp:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loop: 0
+  isDone: 0
+  onTrack: 0
+  time: 5
+  delay: 0
+  start: {x: 4.5, y: -4.5, z: 0}
+  end: {x: -4.5, y: -4.5, z: 0}
+  isHandL: 0
+  isHandR: 0
+  targetPlayer: 0

@@ -38,7 +38,6 @@ public class AreaSpawn : AttackEvent
 
     public override void SpawnAttacks()
     {
-
         timer -= Time.deltaTime;
         if(timer <= 0)
         {

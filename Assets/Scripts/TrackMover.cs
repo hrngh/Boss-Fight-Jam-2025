@@ -5,6 +5,9 @@ using UnityEngine;
 public class TrackMover : MonoBehaviour
 {
     public AnimationCurve lerp;
+    public bool loop;
+    [HideInInspector] public bool isDone;
+    [HideInInspector] public bool onTrack;
     public float time;
     public float delay;
     public Vector3 start;
@@ -52,6 +55,7 @@ public class TrackMover : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (onTrack) return;
         if (isHandL)
         {
             GameManager.Instance.handLTransform.gameObject.GetComponent<BossPartMover>().possessed = false;
@@ -67,6 +71,8 @@ public class TrackMover : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        if (timer >= time) isDone = true;
+        if (isDone && !loop) return; 
         Transform targetTransform = isHandL ? GameManager.Instance.handLTransform : isHandR ? GameManager.Instance.handRTransform : transform;
         if(timer > 0) targetTransform.position = Vector3.Lerp(start, end, lerp.Evaluate(timer % time / time));
     }
