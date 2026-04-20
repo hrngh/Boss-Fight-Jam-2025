@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: eb5ce9cfc16b63e469778a34fd54ff09
+guid: 72f62b6d2e2618e4b91c3d9b107ca840
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3739957133524300147
-    second: Untitled_Artwork-1_0
+      213: 3410439384014351281
+    second: Untitled_Artwork-4_0
+  - first:
+      213: 7439738896468046806
+    second: Untitled_Artwork-4_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 120
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork-1_0
+      name: Untitled_Artwork-4_0
       rect:
         serializedVersion: 2
-        x: 134
-        y: 116
-        width: 139
-        height: 144
+        x: 167
+        y: 150
+        width: 34
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d8e881d5dc0091cc0800000000000000
-      internalID: -3739957133524300147
+      spriteID: 1bb6d2cec80545f20800000000000000
+      internalID: 3410439384014351281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled_Artwork-4_1
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 155
+        width: 37
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d372a1eb134f3760800000000000000
+      internalID: 7439738896468046806
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Untitled_Artwork-1_0: -3739957133524300147
+      Untitled_Artwork-4_0: 3410439384014351281
+      Untitled_Artwork-4_1: 7439738896468046806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
